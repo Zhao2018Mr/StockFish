@@ -28,7 +28,7 @@ public class FileUtils {
         try {
             // 一些电脑不需要转UTF-8
 //            reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
-            reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+            reader=new BufferedReader(new InputStreamReader(new FileInputStream(file)));
 //            reader = new BufferedReader(new FileReader(file));
             String tempStr;
             while ((tempStr = reader.readLine()) != null) {

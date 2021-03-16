@@ -1,10 +1,7 @@
 package com.zyj.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zyj.utils.CommonUtils;
-import com.zyj.utils.FileUtils;
-import com.zyj.utils.StockUtils;
-import com.zyj.utils.TableViewUtils;
+import com.zyj.utils.*;
 import com.zyj.vo.ConfVo;
 import com.zyj.vo.StockVo;
 import javafx.concurrent.ScheduledService;
@@ -95,7 +92,9 @@ public class StockController extends ScheduledService<Void> implements Initializ
         return new Task<Void>() {
             @Override
             protected Void call() {
-                handleRefreshAction();
+                if(DateUtils.getBetweenNowDateTime()){
+                    handleRefreshAction();
+                }
                 return null;
             }
         };

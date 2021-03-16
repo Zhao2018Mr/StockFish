@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
@@ -30,6 +31,7 @@ public class Main extends Application {
         primaryStage.setTitle("Fishing");
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setOpacity(CommonUtils.confVo.getOpacity());
+        primaryStage.initStyle(StageStyle.UTILITY);
         Scene scene = new Scene(root, 210, 400);
         scene.setFill(null);
 
