@@ -1,6 +1,7 @@
 package com.zyj.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zyj.Main;
 import com.zyj.utils.*;
 import com.zyj.vo.ConfVo;
 import com.zyj.vo.StockVo;
@@ -85,6 +86,16 @@ public class StockController extends ScheduledService<Void> implements Initializ
     private void handleRefreshAction(){
         tableView.getItems().setAll(StockUtils.getStock(CommonUtils.confVo.getStocks(),false));
     }
+
+    /**
+     * 置顶
+     */
+    @FXML
+    private void handleTopAction(){
+        Main.isTop=!Main.isTop;
+        Main.primaryStageStatic.setAlwaysOnTop(Main.isTop);
+    }
+
 
 
     @Override

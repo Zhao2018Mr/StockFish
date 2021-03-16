@@ -1,23 +1,11 @@
 package com.zyj.utils;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.zyj.utils.httpclient.HttpClientUtil;
 import com.zyj.utils.httpclient.HttpConstant;
 import com.zyj.vo.StockVo;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -62,17 +50,21 @@ public class StockUtils {
             FileUtils.writeFileContent(JSONObject.toJSONString(CommonUtils.confVo));
         }
         String result =  HttpClientUtil.sendHttpGet(URL+stockCodeStringBuffer, HttpConstant.REQ_TIMES);
-        logger.info(result);
-        List<StockVo> stockVos=new ArrayList<>();
         JSONArray jsonArray= JSONObject.parseObject(result).getJSONArray("data");
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             StockVo stockVo = map.get(jsonObject.getString("symbol"));
             stockVo.setPrice(jsonObject.getString("current"));
             stockVo.setRange(jsonObject.getString("percent")+"%");
-            stockVos.add(stockVo);
         }
-        return stockVos;
+        List<StockVo> list = new ArrayList();
+        Iterator iter = map.entrySet().iterator();
+        while(iter.hasNext()){
+            Map.Entry entry = (Map.Entry)iter.next();
+            list.add((StockVo) entry.getValue());
+        }
+
+        return list;
     }
 
     /**

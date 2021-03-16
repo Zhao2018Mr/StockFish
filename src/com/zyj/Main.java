@@ -16,6 +16,11 @@ import java.util.concurrent.Executors;
 
 public class Main extends Application {
 
+    public static Stage primaryStageStatic = null;
+    /**
+     * 是否置顶
+     */
+    public static boolean isTop = false;
 
     public static void main(String[] args) {
         launch(args);
@@ -26,11 +31,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
+        primaryStageStatic = primaryStage;
 //        loader.setController(this);
         root = loader.load();
         primaryStage.setTitle("Fishing");
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setOpacity(CommonUtils.confVo.getOpacity());
+        primaryStage.setAlwaysOnTop(isTop);
         primaryStage.initStyle(StageStyle.UTILITY);
         Scene scene = new Scene(root, 210, 400);
         scene.setFill(null);
