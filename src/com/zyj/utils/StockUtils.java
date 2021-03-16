@@ -27,7 +27,7 @@ public class StockUtils {
     public static List<StockVo> getStock(List<StockVo> stockVoList,boolean isDel){
         boolean isExitsName =  false;
         StringBuffer stockCodeStringBuffer=new StringBuffer();
-        Map<String,StockVo> map=new HashMap();
+        Map<String,StockVo> map=new LinkedHashMap<>();
         for (int i = 0; i < stockVoList.size(); i++) {
             StockVo stockVo=stockVoList.get(i);
             if(stockVo.getStockName()==null || stockVo.getStockName().length()==0){
@@ -63,6 +63,7 @@ public class StockUtils {
             Map.Entry entry = (Map.Entry)iter.next();
             list.add((StockVo) entry.getValue());
         }
+        
 
         return list;
     }
