@@ -11,8 +11,10 @@ import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 import java.net.Socket;
 import java.net.URL;
@@ -26,9 +28,11 @@ import java.util.concurrent.TimeUnit;
 public class StockController extends ScheduledService<Void> implements Initializable  {
 
     @FXML
-    private TableView<StockVo> tableView;
+    public TableView<StockVo> tableView;
     @FXML
     private TextField stockCode;
+    @FXML
+    public ScrollPane pane;
 
     private static StockController stockController;
 
@@ -84,8 +88,6 @@ public class StockController extends ScheduledService<Void> implements Initializ
     private void handleRefreshAction(){
         tableView.getItems().setAll(StockUtils.getStock(CommonUtils.confVo.getStocks(),false));
     }
-
-
 
 
     @Override

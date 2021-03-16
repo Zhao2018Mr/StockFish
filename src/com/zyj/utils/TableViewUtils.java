@@ -21,7 +21,7 @@ public class TableViewUtils {
                 TableColumn col = new TableColumn(fieldName.value());
                 col.setCellValueFactory(
                         new PropertyValueFactory<>(field.getName()));
-                col.setMinWidth(45);
+                col.setMinWidth(20);
                 col.setPrefWidth(fieldName.width());
                 col.setStyle("-fx-font-size: 15");
                 grid.getColumns().add(col);

@@ -21,7 +21,6 @@ public class Main extends Application {
     }
 
 
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = null;
@@ -30,12 +29,20 @@ public class Main extends Application {
         root = loader.load();
         primaryStage.setTitle("Fishing");
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
-//        primaryStage.setOpacity(0.1);
-        Scene scene = new Scene(root, 400, 400);
+        primaryStage.setOpacity(CommonUtils.confVo.getOpacity());
+        Scene scene = new Scene(root, 210, 400);
         scene.setFill(null);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        // 窗口宽度监听
+//        primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
+//            StockController.getStockController().tableView.setPrefWidth((Double) newVal-100);
+//        });
+//        primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
+//            StockController.getStockController().pane.setPrefHeight((Double) newVal-100);
+//        });
+
         executeScheduledService();
     }
 

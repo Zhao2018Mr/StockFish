@@ -11,5 +11,5 @@ public @interface FieldName {
      */
     String value() default "";
 
-    int width() default 113;
+    int width() default 110;
 }

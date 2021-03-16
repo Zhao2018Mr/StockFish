@@ -13,6 +13,8 @@ public class ConfVo {
 
     private String token;
 
+    private Double opacity;
+
     public List<StockVo> getStocks() {
         return stocks;
     }
@@ -42,5 +44,13 @@ public class ConfVo {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Double getOpacity() {
+        return opacity;
+    }
+
+    public void setOpacity(Double opacity) {
+        this.opacity = opacity;
     }
 }
