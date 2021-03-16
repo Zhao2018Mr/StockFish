@@ -31,7 +31,7 @@ public class Main extends Application {
         primaryStage.setTitle("Fishing");
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);
 //        primaryStage.setOpacity(0.1);
-        Scene scene = new Scene(root, 500, 400);
+        Scene scene = new Scene(root, 400, 400);
         scene.setFill(null);
 
         primaryStage.setScene(scene);

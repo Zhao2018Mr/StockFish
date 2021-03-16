@@ -13,10 +13,10 @@
      fx:controller="com.zyj.controller.StockController" >
    <children>
       <TextField fx:id="stockCode" layoutX="27.0" layoutY="25.0" />
-      <Button layoutX="441.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleRefreshAction" text="刷新" />
-      <Button layoutX="259.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleInsertAction" text="添加" />
-      <Button layoutX="352.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="删除" />
-      <TableView fx:id="tableView" layoutX="27.0" layoutY="89.0" prefHeight="288.0" prefWidth="464.0">
+      <Button layoutX="324.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleRefreshAction" text="❤" />
+      <Button layoutX="228.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleInsertAction" text="＋" />
+      <Button layoutX="275.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="－" />
+      <TableView fx:id="tableView" layoutX="27.0" layoutY="89.0" prefHeight="288.0" prefWidth="347.0">
 
       </TableView>
    </children>

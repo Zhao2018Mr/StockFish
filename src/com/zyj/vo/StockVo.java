@@ -10,7 +10,7 @@ public class StockVo {
     /**
      * 股票代码
      */
-    @FieldName("股票代码")
+//    @FieldName("股票代码")
     private String stockCode;
 
     /**
