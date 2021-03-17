@@ -8,10 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
-import java.beans.EventHandler;
 import java.util.concurrent.Executors;
 
 public class Main extends Application {
@@ -32,25 +30,15 @@ public class Main extends Application {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("stock.fxml"));
         primaryStageStatic = primaryStage;
-//        loader.setController(this);
         root = loader.load();
         primaryStage.setTitle("Fishing");
-//        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setOpacity(CommonUtils.confVo.getOpacity());
         primaryStage.setAlwaysOnTop(isTop);
         primaryStage.initStyle(StageStyle.UTILITY);
         Scene scene = new Scene(root, 210, 400);
         scene.setFill(null);
-
         primaryStage.setScene(scene);
         primaryStage.show();
-        // 窗口宽度监听
-//        primaryStage.widthProperty().addListener((obs, oldVal, newVal) -> {
-//            StockController.getStockController().tableView.setPrefWidth((Double) newVal-100);
-//        });
-//        primaryStage.heightProperty().addListener((obs, oldVal, newVal) -> {
-//            StockController.getStockController().pane.setPrefHeight((Double) newVal-100);
-//        });
 
         executeScheduledService();
     }
