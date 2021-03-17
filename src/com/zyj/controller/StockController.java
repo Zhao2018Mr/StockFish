@@ -3,7 +3,6 @@ package com.zyj.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.zyj.Main;
 import com.zyj.utils.*;
-import com.zyj.vo.ConfVo;
 import com.zyj.vo.StockVo;
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
@@ -12,16 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-
-import java.net.Socket;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 public class StockController extends ScheduledService<Void> implements Initializable  {
 
