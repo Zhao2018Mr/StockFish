@@ -3,9 +3,11 @@ package com.zyj;
 import com.zyj.controller.StockController;
 import com.zyj.utils.CommonUtils;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -39,7 +41,6 @@ public class Main extends Application {
         scene.setFill(null);
         primaryStage.setScene(scene);
         primaryStage.show();
-
         executeScheduledService();
     }
 

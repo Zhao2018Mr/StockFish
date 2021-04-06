@@ -16,18 +16,18 @@ public class StockVo {
     /**
      * 股票名称
      */
-    @FieldName(value = "名称",width = 70)
+    @FieldName(value = "MC",width = 70)
     private String stockName;
 
     /**
      * 价格
      */
-    @FieldName(value = "价格",width = 60)
+    @FieldName(value = "JG",width = 60)
     private String price;
     /**
      * 幅度
      */
-    @FieldName(value = "幅度",width = 60)
+    @FieldName(value = "FD",width = 60)
     private String range;
 
     public StockVo(String stockCode, String stockName, String price, String range) {

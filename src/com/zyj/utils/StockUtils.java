@@ -74,13 +74,21 @@ public class StockUtils {
      * @return
      */
     public static String getStockName(String stockCode){
-        String result =  HttpClientUtil.sendHttpGet(DETAIL_URL+stockCode, HttpConstant.REQ_TIMES);
-        JSONObject jsonObject = JSONObject.parseObject(result).getJSONObject("data").getJSONObject("quote");
-        logger.info(result);
-        if(jsonObject==null){
-            DialogUtil.showError("代码不存在","代码不存在","代码不存在");
-            return "";
+        String result = null;
+        JSONObject jsonObject = null;
+        try {
+            result = HttpClientUtil.sendHttpGet(DETAIL_URL+stockCode, HttpConstant.REQ_TIMES);
+            jsonObject = JSONObject.parseObject(result).getJSONObject("data").getJSONObject("quote");
+            logger.info(result);
+            if(jsonObject==null){
+                DialogUtil.showError("代码不存在","代码不存在","代码不存在");
+                return "";
+            }
+            return jsonObject.getString("name");
+        } catch (Exception e) {
+            e.printStackTrace();
+            DialogUtil.showError("错误","错误",result);
         }
-        return jsonObject.getString("name");
+        return "";
     }
 }

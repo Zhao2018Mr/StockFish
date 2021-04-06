@@ -38,6 +38,7 @@ public class StockController extends ScheduledService<Void> implements Initializ
         TableViewUtils.initTableView(tableView,StockVo.class);
         setStockController(this);
         handleRefreshAction();
+
     }
 
     /**
