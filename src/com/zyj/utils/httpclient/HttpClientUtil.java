@@ -149,7 +149,7 @@ public class HttpClientUtil {
             for (Header header : headers) {
                 for (HeaderElement element : header.getElements()) {
                     if(element.getName().equals("xq_a_token")){
-                        return element.getValue();
+                        return "xq_a_token="+ element.getValue();
                     }
                 }
             }
