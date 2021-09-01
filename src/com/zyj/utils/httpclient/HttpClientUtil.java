@@ -1,10 +1,7 @@
 package com.zyj.utils.httpclient;
 
 import com.zyj.utils.CommonUtils;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -105,6 +102,60 @@ public class HttpClientUtil {
         } catch (Exception e) {
             if (reSend > 0) {
                 result = sendHttpGet(url,  reSend - 1);
+                if (result != null && !"".equals(result)) {
+                    return result;
+                }
+            }
+        }finally {
+            try {
+                EntityUtils.consume(httpEntity);
+            } catch (IOException e) {
+            }
+        }
+        endTime=System.currentTimeMillis();
+        return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sendHttpGetIndex());;
+    }
+
+
+    /**
+     * 获取cookie的值
+     * @author zyj
+     * @date 2021/9/1 11:15
+     * @return java.lang.String
+     */
+    public  static String sendHttpGetIndex()  {
+        String url = "https://xueqiu.com/";
+        //声明返回结果
+        String result = "";
+        //开始请求API接口时间
+        long startTime=System.currentTimeMillis();
+        //请求API接口的响应时间
+        long endTime= 0L;
+        HttpEntity httpEntity = null;
+        HttpResponse httpResponse = null;
+        HttpClient httpClient = null;
+        try {
+            httpClient = HttpClientFactory.getInstance().getHttpClient();
+            HttpGet httpGet = HttpClientFactory.getInstance().httpGet(url);
+            httpGet.setHeader("cookie", CommonUtils.confVo.getToken());
+            // 通过client调用execute方法，得到我们的执行结果就是一个response，所有的数据都封装在response里面了
+
+            httpResponse = httpClient.execute(httpGet);
+            Header[] headers = httpResponse.getHeaders("Set-Cookie");
+            for (Header header : headers) {
+                for (HeaderElement element : header.getElements()) {
+                    if(element.getName().equals("xq_a_token")){
+                        return element.getValue();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            if (HttpConstant.REQ_TIMES > 0) {
+                result = sendHttpGetIndex();
                 if (result != null && !"".equals(result)) {
                     return result;
                 }

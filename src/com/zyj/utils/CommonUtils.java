@@ -1,6 +1,7 @@
 package com.zyj.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zyj.utils.httpclient.HttpClientUtil;
 import com.zyj.vo.ConfVo;
 import com.zyj.vo.StockVo;
 
@@ -28,6 +29,7 @@ public class CommonUtils {
                 confVo.setInterval(15000L);
                 isWrite = true;
             }
+            confVo.setToken(HttpClientUtil.sendHttpGetIndex());
             if(confVo.getToken()==null){
                 confVo.setToken("xq_a_token=a4b3e3e158cfe9745b677915691ecd794b4bf2f9;");
                 isWrite = true;

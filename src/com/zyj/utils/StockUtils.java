@@ -55,7 +55,8 @@ public class StockUtils {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             StockVo stockVo = map.get(jsonObject.getString("symbol"));
             stockVo.setPrice(jsonObject.getString("current"));
-            stockVo.setRange(jsonObject.getString("percent")+"%");
+            String percent = jsonObject.getString("percent");
+            stockVo.setRange(percent==null?"0":percent+"%");
         }
         List<StockVo> list = new ArrayList();
         Iterator iter = map.entrySet().iterator();
@@ -63,8 +64,6 @@ public class StockUtils {
             Map.Entry entry = (Map.Entry)iter.next();
             list.add((StockVo) entry.getValue());
         }
-        
-
         return list;
     }
 

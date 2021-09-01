@@ -11,7 +11,7 @@
       <Button layoutX="79.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="－" />
       <Button layoutX="180.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleTopAction" text="☝" />
 
-      <TableView fx:id="tableView" layoutX="27.0" layoutY="89.0" prefHeight="288.0" prefWidth="200.0">
+      <TableView fx:id="tableView" layoutX="27.0" layoutY="89.0" prefHeight="588.0" prefWidth="200.0">
 
       </TableView>
    </AnchorPane>
