@@ -22,7 +22,6 @@ public class CommonUtils {
         }else {
             confVoStr = FileUtils.readFileContent();
             confVo= JSONObject.parseObject(confVoStr,ConfVo.class);
-            confVo.setStocks(StockUtils.getStock(confVo.getStocks(),false));
             boolean isWrite = false;
             if(confVo.getInterval()==null){
                 confVo.setInterval(15000L);
@@ -33,6 +32,9 @@ public class CommonUtils {
                 confVo.setToken("xq_a_token=a4b3e3e158cfe9745b677915691ecd794b4bf2f9;");
                 isWrite = true;
             }
+            // 获取股票数据
+            confVo.setStocks(StockUtils.getStock(confVo.getStocks(),false));
+
             if(confVo.getOpacity()==null){
                 confVo.setOpacity(1.0);
                 isWrite = true;
