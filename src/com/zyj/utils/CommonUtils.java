@@ -12,7 +12,6 @@ public class CommonUtils {
 
     public static  ConfVo confVo= null;
 
-
     static {
         String confVoStr = FileUtils.readFileContent();
         if(confVoStr.length()==0){

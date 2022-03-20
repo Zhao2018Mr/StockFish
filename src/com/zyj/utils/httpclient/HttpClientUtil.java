@@ -2,11 +2,13 @@ package com.zyj.utils.httpclient;
 
 import com.zyj.utils.CommonUtils;
 import org.apache.http.*;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -82,10 +84,6 @@ public class HttpClientUtil {
     public  static String sendHttpGet(String url,int reSend)  {
         //声明返回结果
         String result = "";
-        //开始请求API接口时间
-        long startTime=System.currentTimeMillis();
-        //请求API接口的响应时间
-        long endTime= 0L;
         HttpEntity httpEntity = null;
         HttpResponse httpResponse = null;
         HttpClient httpClient = null;
@@ -136,14 +134,13 @@ public class HttpClientUtil {
         try {
             httpClient = HttpClientFactory.getInstance().getHttpClient();
             HttpGet httpGet = HttpClientFactory.getInstance().httpGet(url);
-            httpGet.setHeader("cookie", CommonUtils.confVo.getToken());
             // 通过client调用execute方法，得到我们的执行结果就是一个response，所有的数据都封装在response里面了
-
             httpResponse = httpClient.execute(httpGet);
+
             Header[] headers = httpResponse.getHeaders("Set-Cookie");
             for (Header header : headers) {
                 for (HeaderElement element : header.getElements()) {
-                    if(element.getName().equals("xq_a_token")){
+                    if("xq_a_token".equals(element.getName())){
                         return "xq_a_token="+ element.getValue();
                     }
                 }
