@@ -112,7 +112,6 @@ public class HttpClientUtil {
             } catch (IOException e) {
             }
         }
-        endTime=System.currentTimeMillis();
         return result;
     }
 
@@ -131,10 +130,6 @@ public class HttpClientUtil {
         String url = "https://xueqiu.com/";
         //声明返回结果
         String result = "";
-        //开始请求API接口时间
-        long startTime=System.currentTimeMillis();
-        //请求API接口的响应时间
-        long endTime= 0L;
         HttpEntity httpEntity = null;
         HttpResponse httpResponse = null;
         HttpClient httpClient = null;
@@ -166,7 +161,6 @@ public class HttpClientUtil {
             } catch (IOException e) {
             }
         }
-        endTime=System.currentTimeMillis();
         return result;
     }
 

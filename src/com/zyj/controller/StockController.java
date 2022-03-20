@@ -46,7 +46,7 @@ public class StockController extends ScheduledService<Void> implements Initializ
      */
     @FXML
     private void handleInsertAction(){
-        CommonUtils.confVo.getStocks().add(new StockVo(stockCode.getText().toUpperCase()));
+        CommonUtils.confVo.getStocks().add(new StockVo(stockCode.getText().toUpperCase(),CommonUtils.confVo.getStocks().size()));
         handleRefreshAction();
     }
 

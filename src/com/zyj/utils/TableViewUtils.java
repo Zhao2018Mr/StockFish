@@ -1,6 +1,9 @@
 package com.zyj.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zyj.config.inject.FieldName;
+import com.zyj.vo.StockVo;
+import javafx.collections.ObservableList;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -12,6 +15,7 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 public class TableViewUtils {
 
@@ -40,12 +44,10 @@ public class TableViewUtils {
 
     /**
      * 开启tableView拖拽排序
-     * @param grid
-     * @param clazz
      */
-    public static void  openTableViewDragDrop(TableView tableView) {
+    public static void  openTableViewDragDrop(TableView<StockVo> tableView) {
         tableView.setRowFactory(tv->{
-            TableRow row = new TableRow<>();
+            TableRow<StockVo> row = new TableRow<>();
             //拖拽-检测
             row.setOnDragDetected(event -> {
                 if (!row.isEmpty()) {
@@ -77,8 +79,7 @@ public class TableViewUtils {
                 Dragboard db = event.getDragboard();
                 if (db.hasContent(SERIALIZED_MIME_TYPE)) {
                     int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
-                    Object o = tableView.getItems().remove(draggedIndex);
-
+                    StockVo stockVo = tableView.getItems().remove(draggedIndex);
                     int dropIndex;
                     if (row.isEmpty()) {
                         dropIndex = tableView.getItems().size();
@@ -86,14 +87,31 @@ public class TableViewUtils {
                         dropIndex = row.getIndex();
                     }
 
-                    tableView.getItems().add(dropIndex,  o);
+                    tableView.getItems().add(dropIndex,  stockVo);
 
                     event.setDropCompleted(true);
                     tableView.getSelectionModel().select(dropIndex);
+                    // 操作完成
                     event.consume();
+                    saveSort(tableView);
+
                 }
             });
             return  row;
         });
+    }
+
+    /**
+     * 保存当前排序
+     */
+    public static void saveSort(TableView<StockVo> tableView){
+        ObservableList<StockVo> items = tableView.getItems();
+        for (int i = 0; i < items.size(); i++) {
+            items.get(i).setOrderNum(i);
+        }
+        // 重新添加
+        CommonUtils.confVo.setStocks(items);
+        // 重新写入文件
+        FileUtils.writeFileContent(JSONObject.toJSONString(CommonUtils.confVo));
     }
 }

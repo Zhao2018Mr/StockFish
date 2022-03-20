@@ -5,7 +5,7 @@ import com.zyj.config.inject.FieldName;
 /**
  * 股票
  */
-public class StockVo {
+public class StockVo implements Comparable<StockVo>{
 
     /**
      * 股票代码
@@ -30,15 +30,30 @@ public class StockVo {
     @FieldName(value = "FD",width = 60)
     private String range;
 
-    public StockVo(String stockCode, String stockName, String price, String range) {
+    /**
+     * 排序
+     */
+    private Integer orderNum;
+
+    public StockVo(String stockCode, String stockName, String price, String range,Integer orderNum) {
         this.stockCode = stockCode;
         this.stockName = stockName;
         this.price = price;
         this.range = range;
+        this.orderNum = orderNum;
     }
 
-    public StockVo(String stockCode) {
+    public Integer getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    public StockVo(String stockCode,Integer orderNum) {
         this.stockCode = stockCode;
+        this.orderNum = orderNum;
     }
 
     @Override
@@ -48,6 +63,7 @@ public class StockVo {
                 ", stockName='" + stockName + '\'' +
                 ", price='" + price + '\'' +
                 ", range='" + range + '\'' +
+                ", orderNum=" + orderNum +
                 '}';
     }
 
@@ -81,5 +97,15 @@ public class StockVo {
 
     public void setRange(String range) {
         this.range = range;
+    }
+
+
+
+    @Override
+    public int compareTo(StockVo stockVo) {
+        if(this.orderNum==null || stockVo.getOrderNum()==null){
+            return -99;
+        }
+        return this.orderNum - stockVo.getOrderNum();
     }
 }

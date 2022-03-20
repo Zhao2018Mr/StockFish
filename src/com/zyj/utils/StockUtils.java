@@ -26,8 +26,9 @@ public class StockUtils {
      */
     public static List<StockVo> getStock(List<StockVo> stockVoList,boolean isDel){
         boolean isExitsName =  false;
-        StringBuffer stockCodeStringBuffer=new StringBuffer();
+        StringBuilder stockCodeStringBuffer=new StringBuilder();
         Map<String,StockVo> map=new LinkedHashMap<>();
+        Collections.sort(stockVoList);
         for (int i = 0; i < stockVoList.size(); i++) {
             StockVo stockVo=stockVoList.get(i);
             if(stockVo.getStockName()==null || stockVo.getStockName().length()==0){
@@ -58,11 +59,9 @@ public class StockUtils {
             String percent = jsonObject.getString("percent");
             stockVo.setRange(percent==null?"0":percent+"%");
         }
-        List<StockVo> list = new ArrayList();
-        Iterator iter = map.entrySet().iterator();
-        while(iter.hasNext()){
-            Map.Entry entry = (Map.Entry)iter.next();
-            list.add((StockVo) entry.getValue());
+        List list = new ArrayList();
+        for (Map.Entry<String, StockVo> entry : map.entrySet()) {
+            list.add(entry.getValue());
         }
         return list;
     }

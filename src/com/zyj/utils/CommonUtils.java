@@ -18,7 +18,7 @@ public class CommonUtils {
         if(confVoStr.length()==0){
             confVo=new ConfVo();
             confVo.setStocks(new ArrayList<>());
-            confVo.getStocks().add(new StockVo("SH000001"));
+            confVo.getStocks().add(new StockVo("SH000001",0));
             confVo.setInterval(15000L);
         }else {
             confVoStr = FileUtils.readFileContent();
