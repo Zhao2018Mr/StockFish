@@ -36,9 +36,9 @@ public class StockController extends ScheduledService<Void> implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         TableViewUtils.initTableView(tableView,StockVo.class);
+        TableViewUtils.openTableViewDragDrop(tableView);
         setStockController(this);
         handleRefreshAction();
-
     }
 
     /**
