@@ -12,7 +12,8 @@
       "price":"3445.17",
       "range":"0.74%",
       "stockCode":"SH000001",
-      "stockName":"上证指数"
+      "stockName":"上证指数",
+      "orderNum":1
     }
   ]
 }
@@ -20,3 +21,4 @@
 1. interval: 间隔时长,默认多长时间刷新一次收益率
 2. opacity: 0.1~1,透明度
 3. stocks: 股票内容
+4. orderNum: 显示排序
