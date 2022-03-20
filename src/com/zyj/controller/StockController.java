@@ -38,6 +38,11 @@ public class StockController extends ScheduledService<Void> implements Initializ
         TableViewUtils.initTableView(tableView,StockVo.class);
         TableViewUtils.openTableViewDragDrop(tableView);
         setStockController(this);
+        //点击其他地方使 tableview 取消选中
+        pane.setOnMouseClicked(event -> {
+            tableView.getSelectionModel().clearSelection();
+        });
+
         handleRefreshAction();
     }
 
